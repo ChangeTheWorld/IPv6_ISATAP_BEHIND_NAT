@@ -1,13 +1,12 @@
+#!/bin/sh
+
 local_v6_interface=wan6
 local_v6_link=6in4-wan6
 local_lan_interface=br-lan
  
 remote_v6="2402:f000:1:1501:200:5efe"
 remote_v4="166.111.21.1"
- 
-echo "Shutdown IPv6 interface"
-ifdown $local_v6_interface
-sleep 3
+
  
 #local_wan_v4_addr=$(ip addr show dev $local_v4_interface | grep inet | awk '{print $2}')
 old_local_wan_v4_addr=$(uci show network.wan6.ip6addr | grep -E -o "([0-9]{1,3}\.){3}[0-9]{1,3}")
@@ -16,6 +15,8 @@ if [ "echo $old_local_wan_v4_addr"  = "echo $local_wan_v4_addr" ];
 then
 echo "No change!"
 else
+echo "Shutdown IPv6 interface"
+ifdown $local_v6_interface
 sleep 3
 echo "Get local wan IP address $local_wan_v4_addr"
 local_v6_addr=$remote_v6:$local_wan_v4_addr/64
