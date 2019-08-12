@@ -4,3 +4,4 @@
 #### 需要组件curl/ip6tables/6in4
 #### IPv6 NAT后IPv6私网地址请按照实际需求进行调整
 #### 感谢https://ip.sb 提供的IP地址获取api
+#### 感谢Tsinghua University提供的隧道服务
