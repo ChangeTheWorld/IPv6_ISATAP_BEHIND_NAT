@@ -36,6 +36,7 @@ echo "Set up iptables rules"
 ip6tables -t nat -A POSTROUTING -o $local_v6_link -j MASQUERADE
 ip6tables -A FORWARD -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
 ip6tables -A FORWARD -i eth0.2 -j ACCEPT
+# 这里根据实际情况替换成wan的物理接口
  
 echo "Set up IPv6 route"
 ip -6 route del default from 2402:f000:1:1501::/64
